@@ -12,6 +12,9 @@ const app ={}
 data.create('test','newFile',{'name':'Bangladesh','languages':'Bangla'},(err)=>{
     console.log('error was',err)
 })
+data.delete('test','newFile',(err)=>{
+    console.log(err)
+})
 
 
 // create server 
