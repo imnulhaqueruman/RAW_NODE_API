@@ -24,15 +24,7 @@ handler.handleReqRes = (req,res) =>{
 
     const chosenHandler = routes[trimmedPath] ? routes[trimmedPath] : notFound;
 
-    chosenHandler(requestProperties,(statusCode,payLoad) =>{
-        statusCode = typeof(statusCode) === 'number' ? statusCode:500;
-        payLoad = typeof(payLoad) === 'object'? payLoad:{};
-
-        const payLoadString = JSON.stringify(payLoad)
-
-        res.writeHead(statusCode);
-        res.end(payLoadString)
-    })
+    
 
     const decoder = new StringDecoder('utf-8')
     let realData = ''
@@ -41,9 +33,19 @@ handler.handleReqRes = (req,res) =>{
     })
     req.on('end' , () =>{
         realData += decoder.end();
+        chosenHandler(requestProperties,(statusCode,payLoad) =>{
+            statusCode = typeof(statusCode) === 'number' ? statusCode:500;
+            payLoad = typeof(payLoad) === 'object'? payLoad:{};
+    
+            const payLoadString = JSON.stringify(payLoad)
+    
+            res.writeHead(statusCode);
+            res.end(payLoadString)
+        })
+    
         
         console.log(realData)
-        //res.end('Hello Programmers')
+        res.end('Hello Programmers')
     })
 
 
