@@ -3,13 +3,13 @@
 
 // module scaffolding
 
-const handler = {}
+const handle = {}
 
-handler.sampleHandler = (requestProperties, callback) =>{
+handle.sampleHandler = (requestProperties, callback) =>{
     console.log(requestProperties)
     callback(200, {
         message:'This is simple url'
     })
 }
 
-module.exports = handler
+module.exports = handle
